@@ -26,8 +26,8 @@
 |category_id         |integer      |null: false                      |
 |item_condition_id   |integer      |null: false                      |
 |delivery_fee_id     |integer      |null: false                      |
-|prefecture_id       |string       |null: false                      |
-|days_id             |integer      |null: false                      |
+|prefecture_id       |integer       |null: false                     |
+|shipping_day_id     |integer      |null: false                      |
 |price               |integer      |null: false                      |
 |user                |references   |null: false, foreign_key: true   |
 
@@ -43,8 +43,8 @@
 |item              |references  |null: false, foreign_key: true  |
 
 
-
 - belongs_to :item
+- belongs_to :user
 - has_one :shipping_address
 
 
@@ -53,12 +53,12 @@
 |Column             |Type            |Options                         |
 |-------------------|----------------|--------------------------------|
 |post_code          |string          |null: false                     |
-|area               |integer         |null: false                     |
+|prefecture_id      |integer         |null: false                     |
 |city               |string          |null: false                     |
 |address            |string          |null: false                     |
 |building_name      |string          |                                |
 |phone_num          |string          |null: false                     |
-|purchase_records_id|references      |null: false, foreign_key: true  |
+|purchase_records   |references      |null: false, foreign_key: true  |
 
 belongs_to :purchase_record
 
