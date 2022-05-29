@@ -2,14 +2,14 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :name, presence: true, length: { maximum: 40 }
   validates :item_explanation, presence: true
-  validates :category_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :item_condition_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_fee_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :prefecture_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_day_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :category_id, numericality: { other_than: 1 }
+  validates :item_condition_id,  numericality: { other_than: 1 }
+  validates :delivery_fee_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 }
+  validates :shipping_day_id, numericality: { other_than: 1 }
 
   with_options presence: true, format: { with: /\A[0-9]+\z/ } do
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999} 
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } 
   end
 
   belongs_to :user
