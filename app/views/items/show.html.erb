@@ -24,15 +24,15 @@
     </div>
 
     
-    <% if user_signed_in? && current_user[:id] == @item.user[:id]%>
-    <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
-    <% elsif user_signed_in? && current_user[:id] != @item.user%>
-    
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-    
-    <% else %>
+    <% if user_signed_in? %>
+      <% if current_user[:id] == @item.user[:id]%>
+        <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+      <% else %>
+        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+      <% end %>
+    <% end %>
     <div class="item-explain-box">
       <span><%= @item.item_explanation %></span>
     </div>
@@ -75,7 +75,7 @@
       </div>
     </div>
   </div>
-  <% end %>
+ 
   <%# /商品の概要 %>
 
   <div class="comment-box">
@@ -100,9 +100,9 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+  
 </div>
 
 <%= render "shared/footer" %>
