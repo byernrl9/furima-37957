@@ -26,4 +26,4 @@ class Item < ApplicationRecord
 end
 
 100.30
-10030*10^-2
+10_030 * 10 ^ -2
