@@ -14,6 +14,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :purchase_record
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -21,8 +22,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :prefecture
   belongs_to :shipping_day
-
-  # has_one :purchase_records
 end
 
 100.30
