@@ -57,25 +57,25 @@ RSpec.describe PurchaseRecordShippingAddress, type: :model do
       it 'post_codeは「3桁ハイフン4桁」の半角文字列でないと保存できない' do
         @purchase_record_shipping_address.post_code = '1234567'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'phone_numは9桁以下では保存できない' do
         @purchase_record_shipping_address.phone_num = '0909999'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone num is invalid")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone num is invalid')
       end
       it 'phone_numは12桁以上では保存できない' do
         @purchase_record_shipping_address.phone_num = '09099999999999'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone num is invalid")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone num is invalid')
       end
       it 'phone_num は全角では保存できない' do
         @purchase_record_shipping_address.phone_num = '電話番号'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone num is invalid")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone num is invalid')
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @purchase_record_shipping_address.token = nil
         @purchase_record_shipping_address.valid?
         expect(@purchase_record_shipping_address.errors.full_messages).to include("Token can't be blank")
