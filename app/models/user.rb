@@ -8,8 +8,6 @@ class User < ApplicationRecord
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には半角英数字混同で設定してください'
 
-  
-
   has_many :items
   has_many :purchase_records
   has_one :user_info

@@ -16,12 +16,12 @@ RSpec.describe User, type: :model do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("ユーザー名を入力してください")
+        expect(@user.errors.full_messages).to include('ユーザー名を入力してください')
       end
       it 'emailが空では登録できない' do
         @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("メールアドレスを入力してください")
+        expect(@user.errors.full_messages).to include('メールアドレスを入力してください')
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
@@ -39,13 +39,13 @@ RSpec.describe User, type: :model do
         @user.password = ''
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードを入力してください")
+        expect(@user.errors.full_messages).to include('パスワードを入力してください')
       end
       it 'passwordがpassword_confirmationが不一致では登録できない' do
         @user.password = 'a1a1a1'
         @user.password_confirmation = 'a1a1a'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
       it 'passwordが5文字以下では登録できない' do
         @user.password = 'a1a1'
@@ -80,7 +80,7 @@ RSpec.describe User, type: :model do
       it 'family_nameが空では登録できない' do
         @user.family_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("お名前(氏)を入力してください")
+        expect(@user.errors.full_messages).to include('お名前(氏)を入力してください')
       end
       it 'family_nameが全角（漢字、ひらがな、カタカナ）でないと登録できない' do
         @user.family_name = 'abc'
@@ -90,7 +90,7 @@ RSpec.describe User, type: :model do
       it 'first_nameが空では登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("お名前(名)を入力してください")
+        expect(@user.errors.full_messages).to include('お名前(名)を入力してください')
       end
       it 'first_nameが全角（漢字・ひらがな・カタカナ）でないと登録できない' do
         @user.first_name = 'abc'
@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
       it 'family_name_kanaが空では登録できない' do
         @user.family_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("お名前のフリガナ(氏)を入力してください")
+        expect(@user.errors.full_messages).to include('お名前のフリガナ(氏)を入力してください')
       end
       it 'family_name_kanaが全角（カタカナ）でないと登録できない' do
         @user.family_name_kana = 'たなか'
@@ -110,7 +110,7 @@ RSpec.describe User, type: :model do
       it 'first_name_kanaが空では登録できない' do
         @user.first_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("お名前のフリガナ(名)を入力してください")
+        expect(@user.errors.full_messages).to include('お名前のフリガナ(名)を入力してください')
       end
       it 'first_name_kanaが全角（カタカナ）でないと登録できない' do
         @user.first_name_kana = 'たなか'
@@ -120,7 +120,7 @@ RSpec.describe User, type: :model do
       it 'birth_dayが空では登録できない' do
         @user.birth_day = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("生年月日を入力してください")
+        expect(@user.errors.full_messages).to include('生年月日を入力してください')
       end
     end
   end

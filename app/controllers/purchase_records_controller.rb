@@ -4,9 +4,7 @@ class PurchaseRecordsController < ApplicationController
   def index
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
 
-    if @item.user_id == current_user.id || @item.purchase_record != nil
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user_id == current_user.id || !@item.purchase_record.nil?
   end
 
   def create
