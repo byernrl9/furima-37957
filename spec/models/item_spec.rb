@@ -15,17 +15,17 @@ RSpec.describe Item, type: :model do
       it '商品画像がないと商品出品は保存できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("画像を入力してください")
+        expect(@item.errors.full_messages).to include('画像を入力してください')
       end
       it '商品の名前がないと商品出品は保存できない' do
         @item.name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("タイトルを入力してください")
+        expect(@item.errors.full_messages).to include('タイトルを入力してください')
       end
       it '商品の説明がないと商品出品は保存できない' do
         @item.item_explanation = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品説明を入力してください")
+        expect(@item.errors.full_messages).to include('商品説明を入力してください')
       end
       it 'カテゴリー情報欄が「---」だと商品出品は保存できない' do
         @item.category_id = 1
@@ -55,7 +55,7 @@ RSpec.describe Item, type: :model do
       it '価格の情報がないと商品出品は保存ができない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("価格を入力してください")
+        expect(@item.errors.full_messages).to include('価格を入力してください')
       end
       it 'ユーザーが紐付いていないと商品出品は保存できない' do
         @item.user = nil
