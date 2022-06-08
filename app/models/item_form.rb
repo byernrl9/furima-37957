@@ -16,7 +16,8 @@ class ItemForm
     :created_at,
     :datetime,
     :updated_at,
-    :datetime
+    :datetime,
+    :tag_name
   )
 
   validates :image, presence: true
@@ -33,10 +34,20 @@ class ItemForm
   end
 
   def save
-    Item.create(image: image, name: name, item_explanation: item_explanation, category_id: category_id, item_condition_id: item_condition_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, shipping_day_id: shipping_day_id, price: price, user_id: user_id)
+    item = Item.create(image: image, name: name, item_explanation: item_explanation, category_id: category_id, item_condition_id: item_condition_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, shipping_day_id: shipping_day_id, price: price, user_id: user_id)
+    
+    tag = Tag.where(tag_name: tag_name).first_or_initialize
+    tag.save
+    ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
   end
 
   def update(params, item)
+    item.item_tag_relations.destroy_all
+    tag_name = params.delete(:tag_name)
+    tag = Tag.where(tag_name: tag_name).first_or_initialize if tag_name.present?
+
+    tag.save if tag_name.present?
     item.update(params)
+    ItemTagRelation.create(item_id: item.id, tag_id: tag.id) if tag_name.present?
   end
 end
