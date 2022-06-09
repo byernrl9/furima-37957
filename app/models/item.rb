@@ -14,9 +14,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_day
 
-  def seld.search(search)
+  def self.search(search)
     if search != ""
-      Item.where('name LIKE(?', "%#{search}")
+      Item.where('name LIKE(?)', "%#{search}%")
     else
       Item.all
     end
