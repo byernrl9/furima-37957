@@ -1,6 +1,4 @@
 class Item < ApplicationRecord
-  
-
   belongs_to :user
   has_one_attached :image
   has_one :purchase_record
@@ -15,7 +13,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Item.where('name LIKE(?)', "%#{search}%")
     else
       Item.all

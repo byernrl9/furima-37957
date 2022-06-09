@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
     item_attributes = @item.attributes
     @item_form = ItemForm.new(item_attributes)
     @item_form.tag_name = @item.tags&.first&.tag_name
-   
 
     redirect_to root_path if @item.user_id != current_user.id || @item.purchase_record.present?
   end
@@ -52,25 +51,24 @@ class ItemsController < ApplicationController
   end
 
   def search
-    return nil if params[:keyword] == ""
-    tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
-    render json:{ keyword: tag }
+    return nil if params[:keyword] == ''
+
+    tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"])
+    render json: { keyword: tag }
   end
 
   def name_search
     @items = Item.search(params[:keyword])
-   
   end
 
   private
 
   def item_form_params
     params.require(:item_form).permit(:image, :name, :item_explanation, :category_id, :item_condition_id, :delivery_fee_id,
-                                 :prefecture_id, :shipping_day_id, :price, :tag_name).merge(user_id: current_user.id)
+                                      :prefecture_id, :shipping_day_id, :price, :tag_name).merge(user_id: current_user.id)
   end
 
   def set_item
     @item = Item.find(params[:id])
- 
   end
 end

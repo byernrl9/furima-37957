@@ -34,8 +34,9 @@ class ItemForm
   end
 
   def save
-    item = Item.create(image: image, name: name, item_explanation: item_explanation, category_id: category_id, item_condition_id: item_condition_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, shipping_day_id: shipping_day_id, price: price, user_id: user_id)
-    
+    item = Item.create(image: image, name: name, item_explanation: item_explanation, category_id: category_id,
+                       item_condition_id: item_condition_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, shipping_day_id: shipping_day_id, price: price, user_id: user_id)
+
     tag = Tag.where(tag_name: tag_name).first_or_initialize
     tag.save
     ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
