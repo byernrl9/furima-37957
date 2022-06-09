@@ -13,6 +13,14 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :prefecture
   belongs_to :shipping_day
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 end
 
 100.30

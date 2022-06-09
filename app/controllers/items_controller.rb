@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :name_search]
   before_action :set_item, only: [:show, :edit, :update]
 
   def index
@@ -57,6 +57,11 @@ class ItemsController < ApplicationController
     render json:{ keyword: tag }
   end
 
+  def name_search
+    @items = Item.search(params[:keyword])
+   
+  end
+
   private
 
   def item_form_params
@@ -66,5 +71,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+ 
   end
 end

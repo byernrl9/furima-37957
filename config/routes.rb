@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :purchase_records, only: [:index, :create]
     collection do
       get 'search'
+      get 'name_search'
     end
   end
 end

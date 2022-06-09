@@ -1,0 +1,11 @@
+<%= render "shared/header" %>
+
+<div class="contents row">
+  <% @items.each do |item| %>
+   
+    <%= render partial: "search_result", locals: { item: item } %>
+  <% end %>
+</div>
+
+
+<%= render "shared/footer" %>
